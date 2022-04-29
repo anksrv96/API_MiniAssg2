@@ -7,7 +7,7 @@ def test_get_request():
     assert response.status_code == 200
 
 
-def test_post_request():
+def test_create_user():
     payload = {
         "name": "user",
         "phone": "+91xxxxxxxxxx",
@@ -16,7 +16,7 @@ def test_post_request():
         "otp": 111111
     }
     endpoint = "https://hbs-ob-stage.herokuapp.com/user"
-    response = requests.post(url=endpoint, data=payload)
+    response = requests.post(url=endpoint, json=payload)
     print(response.status_code)
     print(response.json())
     assert response.status_code == 201
@@ -27,8 +27,8 @@ def test_get_otp():
         "phone": "+91xxxxxxxxxx"
     }
     endpoint = "https://hbs-ob-stage.herokuapp.com/get_register_otp"
-    response = requests.post(url=endpoint, data=payload)
-    assert response.status_code == 201
+    response = requests.post(url=endpoint, json=payload)
+    assert response.status_code == 200
 
 
 def test_delete_user():
@@ -37,8 +37,8 @@ def test_delete_user():
         "otp": 111111
     }
     endpoint = "https://hbs-ob-stage.herokuapp.com/user"
-    response = requests.delete(url=endpoint, data=payload)
-    assert response.status_code == 201
+    response = requests.delete(url=endpoint, json=payload)
+    assert response.status_code == 200
 
 
 def test_edit_user():
@@ -50,7 +50,7 @@ def test_edit_user():
         "otp": 111111
     }
     endpoint = "https://hbs-ob-stage.herokuapp.com/user"
-    response = requests.put(url=endpoint, data=payload)
+    response = requests.put(url=endpoint, json=payload)
     assert response.status_code == 201
 
 
@@ -59,8 +59,8 @@ def test_login_otp():
         "phone": "+91xxxxxxxxxx"
     }
     endpoint = "https://hbs-ob-stage.herokuapp.com/get_otp"
-    response = requests.post(url=endpoint, data=payload)
-    assert response.status_code == 201
+    response = requests.post(url=endpoint, json=payload)
+    assert response.status_code == 200
 
 
 def test_authenticate():
@@ -75,10 +75,10 @@ def test_authenticate():
         "otp": 111111
     }
     endpoint = "https://hbs-ob-stage.herokuapp.com/authenticate"
-    response1 = requests.post(url=endpoint, data=payload1)
-    response2 = requests.post(url=endpoint, data=payload2)
-    assert response1.status_code == 201
-    assert response2.status_code == 201
+    response1 = requests.post(url=endpoint, json=payload1)
+    response2 = requests.post(url=endpoint, json=payload2)
+    assert response1.status_code == 200
+    assert response2.status_code == 200
 
 
 
